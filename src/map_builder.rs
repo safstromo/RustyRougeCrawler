@@ -46,7 +46,7 @@ impl MapBuilder {
         }
     }
     fn apply_vertical_tunnel(&mut self, y1: i32, y2: i32, x: i32) {
-        use ::std::cmp::{min, max};
+        use ::std::cmp::{max, min};
         for y in min(y1, y2)..=max(y1, y2) {
             if let Some(index) = self.map.try_index(Point::new(x, y)) {
                 self.map.tiles[index as usize] = TileType::Floor;
@@ -54,7 +54,7 @@ impl MapBuilder {
         }
     }
     fn apply_horizontal_tunnel(&mut self, x1: i32, x2: i32, y: i32) {
-        use ::std::cmp::{min, max};
+        use ::std::cmp::{max, min};
         for x in min(x1, x2)..=max(x1, x2) {
             if let Some(index) = self.map.try_index(Point::new(x, y)) {
                 self.map.tiles[index as usize] = TileType::Floor;
@@ -78,9 +78,12 @@ impl MapBuilder {
     }
 
     fn create_room(rng: &mut RandomNumberGenerator) -> Rect {
-        Rect::with_size(rng.range(1, SCREEN_WIDTH - 10),
-                        rng.range(1, SCREEN_HEIGHT - 10),
-                        rng.range(2, 10), rng.range(2, 10))
+        Rect::with_size(
+            rng.range(1, SCREEN_WIDTH - 10),
+            rng.range(1, SCREEN_HEIGHT - 10),
+            rng.range(2, 10),
+            rng.range(2, 10),
+        )
     }
 
     fn inside_screen(p: Point) -> bool {

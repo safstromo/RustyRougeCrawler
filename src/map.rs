@@ -26,10 +26,22 @@ impl Map {
                     let index = map_index(x, y);
                     match self.tiles[index] {
                         TileType::Floor => {
-                            ctx.set(x - camera.left_x, y - camera.top_y, WHITE, BLACK, to_cp437('.'));
+                            ctx.set(
+                                x - camera.left_x,
+                                y - camera.top_y,
+                                WHITE,
+                                BLACK,
+                                to_cp437('.'),
+                            );
                         }
                         TileType::Wall => {
-                            ctx.set(x - camera.left_x, y - camera.top_y, WHITE, BLACK, to_cp437('#'));
+                            ctx.set(
+                                x - camera.left_x,
+                                y - camera.top_y,
+                                WHITE,
+                                BLACK,
+                                to_cp437('#'),
+                            );
                         }
                     }
                 }

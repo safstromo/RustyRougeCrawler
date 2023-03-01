@@ -1,7 +1,7 @@
-mod map;
-mod player;
-mod map_builder;
 mod camera;
+mod map;
+mod map_builder;
+mod player;
 
 mod prelude {
     pub use bracket_lib::prelude::*;
@@ -11,10 +11,13 @@ mod prelude {
     pub const DISPLAY_WIDTH: i32 = SCREEN_WIDTH / 2;
     pub const DISPLAY_HEIGHT: i32 = SCREEN_HEIGHT / 2;
 
-    pub use crate::map::*;
-    pub use crate::player::*;
-    pub use crate::map_builder::*;
     pub use crate::camera::*;
+    pub use crate::map::*;
+    pub use crate::map_builder::*;
+    pub use crate::player::*;
+    pub use legion::*;
+    pub use legion::world::SubWorld;
+    pub use legion::systems::CommandBuffer;
 }
 
 use prelude::*;
@@ -44,8 +47,8 @@ impl GameState for State {
         ctx.set_active_console(1);
         ctx.cls();
         self.player.update(ctx, &self.map, &mut self.camera);
-        self.map.render(ctx, &mut self.camera);
-        self.player.render(ctx, &mut self.camera);
+        self.map.render(ctx, &self.camera);
+        self.player.render(ctx, &self.camera);
     }
 }
 
