@@ -1,5 +1,3 @@
-use std::cmp::min;
-use std::ptr::addr_of_mut;
 use crate::prelude::*;
 
 const NUMBER_OF_ROOMS: usize = 20;
