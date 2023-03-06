@@ -40,6 +40,7 @@ impl State {
         let mut resources = Resources::default();
         let map_builder = MapBuilder::new(&mut rng);
         spawn_player(&mut ecs, map_builder.player_start);
+        Self::spawn_monsters(&mut rng, &mut ecs, &map_builder);
         resources.insert(map_builder.map);
         resources.insert(Camera::new(map_builder.player_start));
         Self {
@@ -47,6 +48,14 @@ impl State {
             resources,
             systems: build_scheduler(),
         }
+    }
+
+    fn spawn_monsters(mut rng: &mut RandomNumberGenerator, mut ecs: &mut World, map_builder: &MapBuilder) {
+        map_builder.rooms
+            .iter()
+            .skip(1)
+            .map(|r| r.center())
+            .for_each(|pos| spawn_monster(&mut ecs, &mut rng, pos));
     }
 }
 
