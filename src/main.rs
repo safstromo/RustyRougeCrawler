@@ -28,7 +28,7 @@ mod prelude {
 use prelude::*;
 
 struct State {
-   ecs: World,
+    ecs: World,
     resources: Resources,
     systems: Schedule,
 }
@@ -56,6 +56,8 @@ impl GameState for State {
         ctx.cls();
         ctx.set_active_console(1);
         ctx.cls();
+        self.resources.insert(ctx.key);
+        self.systems.execute(&mut self.ecs, &mut self.resources)
     }
 }
 
