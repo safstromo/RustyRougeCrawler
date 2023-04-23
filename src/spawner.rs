@@ -26,7 +26,7 @@ pub fn spawn_monster(ecs: &mut World, rng: &mut RandomNumberGenerator, pos: Poin
             color: ColorPair::new(WHITE, BLACK),
             glyph: glyph,
         },
-        MovingRandomly {},
+        ChasingPlayer {},
         Health { current: hp, max: hp },
         Name(name)
     ));
