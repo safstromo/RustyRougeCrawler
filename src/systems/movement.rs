@@ -1,10 +1,10 @@
 use crate::prelude::*;
-use crate::systems::fov::fov;
+
 
 #[system(for_each)]
 #[read_component(Player)]
 #[read_component(FieldOfView)]
-pub fn movement(entitiy: &Entity,
+pub fn movement(entity: &Entity,
                 want_move: &WantsToMove,
                 #[resource] map: &Map,
                 #[resource] camera: &mut Camera,
@@ -26,5 +26,5 @@ pub fn movement(entitiy: &Entity,
             camera.on_player_move(want_move.destination);
         }
     }
-    commands.remove(*entitiy)
+    commands.remove(*entity)
 }
