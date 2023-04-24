@@ -79,6 +79,9 @@ impl BaseMap for Map {
                 self.index_to_point2d(idx1),
                 self.index_to_point2d(idx2))
     }
+    fn is_opaque(&self, _idx: usize) -> bool {
+        self.tiles[_idx as usize] != TileType::Floor
+    }
 }
 
 pub fn map_index(x: i32, y: i32) -> usize {
