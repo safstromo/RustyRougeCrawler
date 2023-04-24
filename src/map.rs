@@ -1,5 +1,4 @@
 use crate::prelude::*;
-use crate::prelude::VirtualKeyCode::M;
 
 const NUM_TILES: usize = (SCREEN_WIDTH * SCREEN_HEIGHT) as usize;
 
